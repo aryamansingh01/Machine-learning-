@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Science Project Journey</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body> 
+        <div class="navbar">
+            <a href="Introduction.html">Introduction</a>
+            <a href="DataPrep_EDA.html">DataPrep_EDA</a>
+            <a href="Clustering.html">Clustering</a>
+            <a href="PCA.html">PCA</a>
+            <a href="NaiveBayes.html">NaiveBayes</a>
+            <a href="DecTrees.html">DecTrees</a>
+            <a href="SVMs.html">SVMs</a>
+            <a href="Regression.html">Regression</a>
+            <a href="NN.html">NN</a>
+            <a href="Conclusions.html">Conclusions</a>
+        </div>
+        <div id="regression-tab">
+            <section id="overview">
+                <h2>Overview</h2>
+                <p>Linear Regression is a statistical method that models the relationship between a dependent variable and one or more independent variables using a linear equation. This method is widely used for prediction and forecasting where data shows a linear trend. However, its main limitation is that it assumes a linear relationship between the variables, which isn't always the case in real-world data.</p>
+                <p>In machine learning, linear regression is a statistical technique that predicts a continuous dependent variable from one or more independent variables. In the most basic type of linear regression, called simple linear regression, the objective is to identify a linear relationship between the inputs and the output, which can be represented as a straight line.</p>
+                <h3>How Linear Regression Works</h3>
+                <ol>
+                    <li><strong>Model Formulation:</strong>
+                        <ul>
+                            <li>Simple Linear Regression involves a single independent variable and is modeled as: <em>y = β<sub>0</sub> + β<sub>1</sub>x + ε</em> where <em>y</em> is the dependent variable, <em>x</em> is the independent variable, <em>β<sub>0</sub></em> is the y-intercept, <em>β<sub>1</sub></em> is the slope, and <em>ε</em> is the error term.</li>
+                            <li>Multiple Linear Regression involves multiple independent variables: <em>y = β<sub>0</sub> + β<sub>1</sub>x<sub>1</sub> + β<sub>2</sub>x<sub>2</sub> + ... + β<sub>n</sub>x<sub>n</sub> + ε</em></li>
+                        </ul>
+                    </li>
+                    <li><strong>Parameter Estimation:</strong>
+                        <p>The coefficients (β) are estimated using the least squares criterion, which involves minimizing the sum of the squares of the residuals (the differences between observed and predicted values).</p>
+                    </li>
+                    <li><strong>Prediction:</strong>
+                        <p>Once the model coefficients are estimated, the model can make predictions for new data by plugging in values for the independent variables and calculating the corresponding predicted value of the dependent variable.</p>
+                    </li>
+                </ol>
+
+                <h3>Limitations of Linear Regression</h3>
+                <ol>
+                    <li><strong>Linearity Assumption:</strong> The basis of linear regression is the idea that the independent and dependent variables have a linear relationship. If the underlying relationship is non-linear, this is a serious drawback because the model will be unable to adequately represent the subtleties of the data.</li>
+                    <li><strong>Outlier Sensitivity:</strong> Data outliers can affect linear regression models significantly, potentially producing a model that does not adequately fit the majority of the data and can have a substantial impact on the regression line's slope.</li>
+                    <li><strong>Multicollinearity:</strong> In multiple linear regression, high correlation among independent variables—multicollinearity—can be a challenge when estimating the link between each independent variable and the dependent variable. It may also cause the coefficient estimations' variance to increase, which would make them unstable.</li>
+                    <li><strong>Homoscedasticity:</strong> The model assumes homoscedasticity, meaning the residuals should have constant variance at every level of the independent variable. When this assumption is violated (heteroscedasticity), it can lead to inefficiencies in the coefficient estimates.</li>
+                    <li><strong>Independence:</strong> Observations need to be independent of each other. In the case of time series data, where past data might influence future data, linear regression's effectiveness diminishes unless modifications are made to account for the autocorrelation.</li>
+                </ol>
+                <p>For data modeling, linear regression is a strong, straightforward, and often used method. But for it to be applied effectively, one must be aware of its presumptions and constraints. If any of these presumptions are not met, alternative techniques like polynomial regression, ridge or lasso regression, or non-linear models may be more suitable.</p>
+            
+            </section>
+            
+            <section id="data-prep">
+                <h2>Data Preparation</h2>
+                <p>For Linear Regression, the dataset used consists of two continuous and quantitative variables. One variable acts as the independent variable while the other is the dependent variable being predicted. Below is an image of the dataset.</p>
+                <p>Let's use the electric vehicle registration data I previously handled to generate a basic dataset for linear regression. In order to make predictions, "Year" will be the independent variable and "Total Vehicles" will be the dependent variable. With this configuration, we may investigate the trends in the quantity of electric cars registered in a given state over time. These two variables will be removed from the dataset, a new, simplified dataset will be made, and an image of the dataset will be provided.</p>
+                <p>The two continuous variables "Year" and "Total Vehicles" make up this condensed dataset. With this dataset, one can now examine the historical evolution of electric car registrations through a straightforward linear regression.</p>
+                <p>Dataset Preview:</p>
+                <pre>Year    Total Vehicles
+            2017    594
+            2018    541
+            2019    1009
+            2020    1851
+            2021    3137</pre>
+              
+                <p>The relationship between the year and the total number of registered electric vehicles is depicted in the plot above. From the scatter plot, you can observe a clear upward trend in the total vehicles registered as years progress. According to this graphic, a linear model would be a decent starting point for predicting the number of electric car registrations by year. However, the growth might also point to the need to investigate non-linear models if accuracy needs to be increased.</p>
+                <p>The data's linear trend highlights how useful linear regression may be for making time-series predictions of this type, when you anticipate a steady change over time that will either increase or decrease. This visualization aids in confirming the appropriateness of linear regression for the initial analysis and provides a straightforward interpretation that can be easily communicated.</p>
+            </section>
+            
+    
+            <section id="code">
+                <h2>Code</h2>
+                
+                <a href="https://github.com/aryamansingh01/machine-learning-code-">Link to the LR Code</a>
+            </section>
+    
+            <section id="results">
+                <h2>Results</h2>
+                <p>Results of the Linear Regression analysis are presented below. This includes the regression equation derived from the analysis and a plot showing the data points with the fitted regression line.</p>
+                <p>Model Equation: <em>y = mx + c</em> where <em>m</em> is the slope and <em>c</em> is the intercept.</p>
+                <img src="regressiongraph.png" alt="Regression Line">
+                <h3>Understanding the Plot and Logistic Regression Model</h3>
+                <p>Logistic Regression Overview:</p>
+                <ul>
+                    <li>Logistic regression is used for binary classification tasks. In your case, it's used to predict the probability that the number of electric vehicles registered exceeds the median, based on the scaled year.</li>
+                    <li>The model equation provided is: <em>probability = 1 / (1 + e^(-(-0.090 × year_scaled + 0.030)))</em>. This equation shows that the probability is calculated using the sigmoid function, which maps the linear combination of inputs to a probability between 0 and 1.</li>
+                </ul>
+                <p>Plot Analysis:</p>
+                <ul>
+                    <li>The graphic shows the real data points against the logistic regression line (red).</li>
+                    <li>The likelihood of electric vehicles above the median is plotted on the y-axis, while the scaled year values are plotted on the x-axis.</li>
+                    <li>There doesn't seem to be any discernible trend or pattern in the distribution of the data points across the scaled year values when it comes to the probability' relationship to the year.</li>
+                </ul>
+                <h3>Discussion of Results</h3>
+                <p>Model Performance:</p>
+                <ul>
+                    <li>The accuracy of the model on the test data is reported to be 0.56, which is generally regarded as low for practical purposes but marginally better than a random guess. This could mean that the year is not a reliable predictor for this classification job, or that the model did not adequately capture the underlying link.</li>
+                </ul>
+                <p>Visualizing Fit:</p>
+                <ul>
+                    <li>The logistic regression line is comparatively flat, meaning that variations in the scaled year have little effect on the probability estimate. The model's inability to accurately anticipate the number of electric car registrations that will exceed the median across several years is consistent with its flatness, which also contributes to its very low accuracy.</li>
+                </ul>
+                <p>Our understanding of the dynamics of EV adoption and the use of predictive modeling in this context has been greatly enhanced by the insights gained from the analysis of the logistic regression model used to the electric cars (EV) dataset, as well as the limitations encountered.</p>
+                <h3>Key Learnings</h3>
+                <ol>
+                    <li>Limited Predictive Power of the Year Alone: The scaled year alone may not be a reliable predictor, as shown by the logistic regression model that was used to determine whether the number of electric vehicles exceeded the median. The comparatively low accuracy (0.56) suggests that there is insufficient data for the year to provide trustworthy projections for EV registrations that reach a median criterion.</li>
+                    <li>Non-Linear Patterns: Although useful for binary classification, the logistic regression approach showed that EV adoption and the year may not have a linear or easily modeled connection using a standard logistic framework. This implies that in order to comprehend and forecast EV adoption rates more accurately, additional variables or more intricate models may be required.</li>
+                    <li>Importance of Additional Variables: This analysis shows that adding more variables to the model may be necessary. More advanced models should take into account the economic considerations, state or regional legislation, technological improvements in electric vehicles, and shifts in consumer preferences as they are anticipated to be major determinants of EV adoption patterns.</li>
+                </ol>
+                <h3>Predictions and Implications</h3>
+                <ol>
+                    <li>Trend Analysis: Even though the logistic model only offered a few insights, it is nevertheless helpful in realizing that, when taken in isolation, EV registrations do not exhibit a substantial correlation with the year. This implies that examining trends over extended periods of time in isolation from other variables may be deceptive.</li>
+                    <li>Model Enhancements: It will probably be necessary to combine a number of predictive variables in order to forecast future trends in EV adoption. It may also be necessary to employ more sophisticated statistical or machine learning models. Neural networks, decision trees, and random forests are a few techniques that may produce more insightful and effective predictions.</li>
+                    <li>Policy and Planning: For policymakers and businesses, understanding that time alone isn't a strong predictor for EV adoption can redirect focus towards factors like improving infrastructure, offering incentives, or investing in technology improvements, which might be more directly correlated with increases in EV registrations.</li>
+                </ol>
+                <h3>Broader Insights</h3>
+                <ul>
+                    <li>Multifactorial Influence: The study emphasizes that a variety of factors, such as societal trends, technological developments, legal changes, and economic situations, can have an impact on EV adoption. As a result, modeling and analysis must take a comprehensive approach.</li>
+                    <li>Adaptive Strategies: The findings highlight the significance of adaptive strategies that address more than simply temporal shifts, focusing also on broader economic and social factors, for players in the EV industry, including manufacturers and policymakers.</li>
+                </ul>
+            </section>
+            
+    
+            <section id="conclusions">
+                <h2>Conclusions</h2>
+                <p>The study of Linear Regression on the selected dataset provided insights into the linear relationships between the variables. This method allows for predictions on how changes in the independent variable affect the dependent variable, which is crucial for decision-making in various fields such as economics, health, and more.</p>
+            </section>
+    
+        <footer>
+            <p>© Aryaman singh</p>
+        </footer>
+
+            <script src="style.js"></script>
+    </body>
+</html>

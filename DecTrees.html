@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Science Project Journey</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body> 
+        <div class="navbar">
+            <a href="Introduction.html">Introduction</a>
+            <a href="DataPrep_EDA.html">DataPrep_EDA</a>
+            <a href="Clustering.html">Clustering</a>
+            <a href="PCA.html">PCA</a>
+            <a href="NaiveBayes.html">NaiveBayes</a>
+            <a href="DecTrees.html">DecTrees</a>
+            <a href="SVMs.html">SVMs</a>
+            <a href="Regression.html">Regression</a>
+            <a href="NN.html">NN</a>
+            <a href="Conclusions.html">Conclusions</a>
+        </div>
+        <section id="overview">
+            <h2>Overview</h2>
+    <p>Decision Trees (DTs) are a type of machine learning algorithm used for both classification and regression tasks. They model decisions and their possible consequences by creating a tree-like structure of decisions and their outcomes. Decision Trees are intuitive and easy to understand, making them popular for a wide range of applications, from customer segmentation to diagnosing medical conditions.</p>
+    <h3>How Decision Trees Work:</h3>
+    <p>A Decision Tree splits data into branches at decision nodes, where each branch represents an outcome of the decision taken. This process starts at the tree's root and continues until a leaf node is reached, which provides the prediction or decision outcome. The key to a Decision Tree's performance is the method it uses to decide where to split the data.</p>
+    <h3>Criteria for Splitting: GINI, Entropy, and Information Gain</h3>
+    <ul>
+        <li><strong>GINI Impurity:</strong> A measure of how often a randomly chosen element from the set would be incorrectly labeled if it was randomly labeled according to the distribution of labels in the subset. GINI impurity is used in the CART (Classification and Regression Trees) algorithm. A GINI score gives an idea of how good a split is by measuring how mixed the classes are in the two groups created by the split. The best split is chosen by minimizing the GINI score.</li>
+        <li><strong>Entropy:</strong> A measure of the randomness or disorder in the dataset. Higher entropy means higher disorder. In the context of Decision Trees, it's used to measure the impurity or diversity of a dataset. The goal of using entropy in Decision Trees is to find splits that decrease disorder (reduce entropy) in the dataset.</li>
+        <li><strong>Information Gain:</strong> Calculated by comparing the entropy before and after a split. It measures the change in entropy, indicating how much uncertainty in the dataset was reduced after the split. Decision Trees aim to maximize Information Gain when choosing where to split the data.</li>
+    </ul>
+    <h3>Example Using Entropy and Information Gain:</h3>
+    <p>Consider a dataset with 10 samples, 6 of which are from Class A and 4 from Class B. The entropy before the split is calculated and then compared after a split to assess the "goodness" of the split through Information Gain.</p>
+    <h3>Infinite Trees:</h3>
+    <p>It is generally possible to create an infinite number of trees due to the flexibility in choosing split points and the depth of the tree. Without constraints, a Decision Tree can continue to create new splits to perfectly classify the training data, leading to overfitting. This is why methods like pruning and setting a maximum depth are important to prevent an overly complex tree.</p>
+    <p>Visual Aids:</p>
+    <img src="Basic-structure-of-a-decision-tree-All-decision-trees-are-built-through-recursion.png" alt="Basic Decision Tree Structure">
+    <img src="Entropy and Information Gain Concept.png" alt="Entropy and Information Gain Concept">
+    <p>The images above illustrate two key aspects of Decision Trees:</p>
+    <ol>
+        <li><strong>Basic Decision Tree Structure:</strong> Demonstrates a basic decision tree with a root decision node that splits into two branches based on a binary decision. Each branch leads to further decision nodes or leaf nodes, representing final decisions or outcomes.</li>
+        <li><strong>Entropy and Information Gain Concept:</strong> Showcases the concept of Entropy and Information Gain with a dataset split. It illustrates a dataset before the split, containing mixed classes, and how it is divided into two groups after the split, highlighting the reduction in disorder (entropy).</li>
+    </ol>
+    <p>Example Calculation and Infinite Trees explanation:</p>
+    <p>Consider a simple dataset and a split that results in groups with distinct class instances. Calculating entropy for each group and then Information Gain provides insight into how Decision Trees use these metrics to optimize splits. The potential for creating an infinite number of trees is discussed, emphasizing the importance of constraints in tree construction to avoid overfitting.</p>
+        </section>
+        <section id="data-prep">
+            <h2>Data Prep</h2>
+            <p>Supervised learning models require labeled data, meaning each observation in the dataset must have an associated label or target variable that the model aims to predict. This fundamental requirement allows the model to learn the relationship between the features (input variables) and the target (output variable) during the training phase. Once trained, the model can predict the target variable for new, unseen data based on the learned patterns.</p>
+            <h3>Splitting Data into Training and Testing Sets</h3>
+            <p>To evaluate the performance of a supervised learning model reliably, the data is split into two sets:</p>
+            <ul>
+                <li><strong>Training Set:</strong> Used to train or build the model. It includes both the features and the labels. The model learns the relationships between the features and the target variable from this subset of the data.</li>
+                <li><strong>Testing Set:</strong> Used to test or evaluate the accuracy of the model. It also includes both features and labels, but this data is not shown to the model during training. The purpose of the testing set is to assess how well the model performs on data it hasn't seen before, providing an estimate of its generalization ability to new data.</li>
+            </ul>
+            <p>The training and testing sets must be disjoint to ensure an unbiased evaluation of the model's performance. If there's overlap, the model might simply memorize specific data points rather than learning the underlying patterns, leading to overfitting. By evaluating the model on a separate testing set, we can better understand its ability to generalize to unseen data.</p>
+            <h3>Using the Car.csv Dataset</h3>
+            <p>The Car.csv dataset, which includes features like Price_in_thousands, Engine_size, Horsepower, Fuel_efficiency, and the sales (which can be transformed into a categorical target variable for classification tasks), serves as an example of labeled data suitable for supervised learning.</p>
+            <p>Sample of Data: Let's discuss how we split it into training and testing sets.</p>
+            <p>Splitting the Dataset</p>
+            <p>To split the dataset into training and testing sets, we typically use a ratio to divide the data-common ratios include 70:30 or 80:20 (training:testing). This split ensures that the majority of the data is used for training the model, while a sufficient portion is reserved for testing its performance on unseen data. The split must be done randomly to ensure the training and testing sets are representative of the overall dataset.</p>
+            <h3>Why Training and Testing Sets Must Be Disjoint</h3>
+            <p>The training and testing sets must be disjoint to ensure the model's performance evaluation is unbiased and reflects its ability to generalize to new data. If the testing data overlaps with the training data, the model's performance metrics might be overly optimistic, not accurately reflecting its performance in real-world scenarios.</p>
+            <p>This process is crucial for assessing the predictive performance of supervised learning models in a realistic and unbiased manner. By ensuring the training and testing sets are disjoint, we prevent information leakage and overfitting, contributing to a more accurate evaluation of the model's performance on data it has not encountered during the training phase.</p>
+            <img src="Training_DecssTree.png" alt="Training Set">
+            <img src="Testing_Decsstree.png" alt="Testing Set">
+        </section>
+        <section id="code">
+            <h2>Code</h2>
+            <p>The code to perform Decision Tree classification or regression on the dataset is provided in the following link:</p>
+            <a href="https://github.com/aryamansingh01/machine-learning-code-">Decision Trees Code</a>
+        </section>
+        <section id="results">
+            <h2>Results</h2>
+            <p>The analysis utilizing Decision Tree classifiers to predict car sales categories based on features such as price, engine size, horsepower, and fuel efficiency has provided significant insights. Let's discuss, illustrate, and visualize the results derived from the "DecTrees.pdf" document, summarizing the approach and findings of using Decision Trees in this context.</p>
+            <h3>Approach and Model Training</h3>
+            <p>The analysis began with preprocessing the car dataset by handling missing values and categorizing sales into binary classes based on the median sales value. Features were selected, and the dataset was split into training and testing sets. Decision Tree classifiers were then trained on this data, experimenting with different depths to observe the impact on model performance.</p>
+            <h3>Model Performance and Accuracy</h3>
+            <p>The initial Decision Tree model achieved an accuracy of 68%, which signifies a fair level of predictive capability but suggests room for improvement. Further experimentation with the depth of the Decision Trees yielded varied accuracies, with a focus on optimizing model complexity to balance underfitting and overfitting.</p>
+            <h3>Visualizations and Analysis</h3>
+            <p>Decision Trees of Different Depths: Visualizations of Decision Trees with different maximum depths were provided, showcasing how the complexity of the model increases with depth. Trees with depths of 2, 3, 4, and None (no maximum depth) were compared to illustrate the decision-making process at each node and to highlight how the models differentiate between the classes based on feature values.</p>
+            <p>Confusion Matrix for Max Depth=3 Decision Tree: The confusion matrix for the Decision Tree with a maximum depth of 3 was shown, providing insights into the model's performance, including the numbers of true positives, true negatives, false positives, and false negatives. This visualization helps in understanding the model's predictive strengths and weaknesses in classifying the sales categories.</p>
+            <p>Feature Importances: A bar chart illustrating the importance of each feature in the Decision Tree's decision-making process was presented. This visualization is crucial for identifying which features most significantly impact the model's predictions, guiding potential adjustments to feature selection and engineering for model improvement.</p>
+            <h3>Conclusions</h3>
+            <p>The analysis demonstrates the applicability of Decision Tree classifiers in predicting sales categories based on car features. The models show a reasonable level of accuracy, with room for optimization. Key takeaways include:</p>
+            <ul>
+                <li><strong>Depth Impact:</strong> The depth of a Decision Tree significantly affects its performance and generalizability. A balanced depth helps in achieving an optimal model that neither overfits nor underfits.</li>
+                <li><strong>Feature Significance:</strong> Understanding which features most influence the model's decisions can guide further data preprocessing and feature engineering efforts to improve model performance.</li>
+                <li><strong>Visualization and Interpretability:</strong> Decision Trees provide an interpretable model, where the decision process can be visualized and understood, making them valuable for insights and decision-making in real-world applications.</li>
+            </ul>
+            <img src="ConfusionMatrix.png" alt="Confusion Matrix">
+            <img src="DecisionTree.png" alt="Decision Tree 1">
+            <img src="FeatureImp.png" alt="Feature Importances">
+        </section>
+        <section id="conclusions">
+            <h2>Conclusions</h2>
+    <p>Several conclusions can be drawn regarding the use of Decision Tree classifiers to predict sales categories in the automotive industry. The analysis has provided valuable insights into the predictive capabilities of Decision Trees and highlighted the importance of feature selection and model complexity in achieving accurate predictions. Here are the key takeaways:</p>
+    <h3>Predictive Capability of Decision Trees</h3>
+    <p>The application of Decision Trees has demonstrated a substantial capacity to predict sales categories based on various car features, such as price, engine size, horsepower, and fuel efficiency. The models achieved varying levels of accuracy, with a notable instance achieving 68% accuracy. This showcases Decision Trees' potential as a tool for classification tasks within the automotive sector, offering a baseline for understanding factors influencing car sales.</p>
+    <h3>Impact of Model Complexity</h3>
+    <p>Through experimenting with different depths for the Decision Trees, it became evident that the complexity of the model (i.e., the depth of the tree) significantly affects its performance. A tree with a depth of 3 was particularly highlighted for its balance between being simplistic enough to avoid overfitting and complex enough to capture the necessary patterns in the data. This finding underscores the importance of carefully tuning model parameters to optimize performance.</p>
+    <h3>Feature Importance</h3>
+    <p>The analysis shed light on the relative importance of different features in predicting sales categories. By evaluating feature importances, it became clear which attributes of the cars had the most significant impact on sales. This information is crucial for manufacturers and marketers in understanding consumer preferences and can guide strategic decisions related to production, marketing, and sales efforts.</p>
+    <h3>Insights and Applications</h3>
+    <p>The use of Decision Trees and the analysis of their performance offer practical insights into the automotive market:</p>
+    <ul>
+        <li><strong>Consumer Behavior:</strong> Understanding which features influence car sales the most can provide insights into consumer behavior and preferences.</li>
+        <li><strong>Market Trends:</strong> The ability to predict sales categories based on car features can help identify emerging market trends and shifts in consumer demand.</li>
+        <li><strong>Product Development:</strong> Manufacturers can use these insights to tailor their product development strategies, focusing on the features most likely to increase sales.</li>
+    </ul>
+        </section>
+        <footer>
+            <p>© Aryaman singh</p>
+        </footer>
+
+
+
+            <script src="style.js"></script>
+    </body>
+</html>

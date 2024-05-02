@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Science Project Journey</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body> 
+        <div class="navbar">
+            <a href="Introduction.html">Introduction</a>
+            <a href="DataPrep_EDA.html">DataPrep_EDA</a>
+            <a href="Clustering.html">Clustering</a>
+            <a href="PCA.html">PCA</a>
+            <a href="NaiveBayes.html">NaiveBayes</a>
+            <a href="DecTrees.html">DecTrees</a>
+            <a href="SVMs.html">SVMs</a>
+            <a href="Regression.html">Regression</a>
+            <a href="NN.html">NN</a>
+            <a href="Conclusions.html">Conclusions</a>
+        </div>
+        <div id="naive-bayes-tab">
+            <section id="overview">
+                <h2>Overview</h2>
+                <p>A family of straightforward probabilistic classifiers known as Naive Bayes (NB) classifiers is based on using the Bayes theorem under the strong (naive) independence assumptions between the features. Despite being some of the most basic Bayesian network models, they are capable of achieving extremely good results in many real-world scenarios, especially when it comes to spam and text classification.<p>
+                    <p>Multiple Naive Bayes: A More In-Depth Look
+                    Assuming that the characteristics (such as word counts in text classification) are derived from a multinomial distribution, the Multinomial Naive Bayes classifier operates. This presumption makes perfect sense for text classification, because each document is essentially a collection of the training set's vocabulary—a multinomial distribution—with each word serving as a "trial" in the multinomial experiment.<p>    
+                <p>Mathematics:
+                Given a document D and a class C, the classifier computes the probability P(C|D) that the document belongs to class C. According to Bayes' theorem:
+                P(C|D) = P(D|C)P(C)/P(D)
+                For text classification, P(D|C) is particularly important and is computed as the product of the probabilities of each word in the document, given the class C, assuming independence between the words.</p>
+                <p>Practical Considerations:
+                • Feature Representation: Typically involves counting the number of times each word appears in a document.
+                • Smoothing: Techniques like Laplace smoothing are used to deal with words that might not appear in the training set but are present in new documents.</p>
+                <p>Bernoulli Naive Bayes: Deeper Dive
+                Bernoulli Naive Bayes models the presence or absence of features using a Bernoulli distribution. It is a good fit when features are binary (0 or 1, present or absent). Each feature in a document is considered a Bernoulli trial where 1 means the presence of the feature (e.g., a word), and 0 signifies its absence.</p>
+                <p>Mathematics:
+                Similar to the Multinomial Naive Bayes, the Bernoulli classifier calculates P(C|D) based on Bayes' theorem. However, for Bernoulli NB, the focus is on the presence or absence of features. The probability of observing a particular combination of features in a document given a class C is computed, considering both the presence and absence of each feature in the dataset.</p>
+                <p>Practical Considerations:
+                • Feature Representation: Binary indicators are used for each feature, indicating the presence or absence of a feature in a document.
+                • Handling Missing Features: Bernoulli NB inherently considers the absence of features, making it particularly suited for datasets where the absence of a feature is meaningful.</p>
+                <p>Choosing Between Multinomial and Bernoulli
+                The choice between Multinomial and Bernoulli Naive Bayes can often depend on the specific nature of the dataset and the problem at hand:
+                • Multinomial NB tends to perform better on datasets where feature frequency is important and provides a good indication of the class membership.
+                • Bernoulli NB can be more suitable for datasets where the mere presence or absence of features is a strong indicator of class membership, especially in texts with binary features or where the dataset is characterized by distinctly present or absent features rather than their frequency.
+                In practice, experimenting with both models on a specific dataset is advisable, along with cross-validation, to determine which classifier performs better for the given task.</p>
+            </section>
+            <section id="data-prep">
+                <h2>Data Prep</h2>
+                <p>Supervised machine learning models rely on labeled datasets to learn the relationship between input features and the target variable. These models require a structured approach to data preparation, including:</p>
+                <ol>
+                    <li><strong>Labeled Data:</strong> Each instance in the dataset must include both the input features and the corresponding target variable, which is known and labeled.</li>
+                    <li><strong>Splitting Data into Training and Testing Sets:</strong> The dataset is divided into two parts: a training set used to build and train the model, and a testing set used to evaluate its accuracy. This split ensures that the model's performance is assessed on unseen data, providing a measure of its generalization ability.</li>
+                </ol>
+                <p>Why Must Training and Testing Sets Be Disjoint?</p>
+                <p>The training and testing sets must be disjoint to prevent the model from simply memorizing the data (overfitting) and to ensure that its performance is evaluated on unseen data. If there's an overlap, the model's accuracy on the testing set would not be a reliable indicator of its performance on new, unseen data, as it might have already seen the test examples during training.</p>
+                <h3>Data Samples</h3>
+                <p>You've provided several datasets, which I'll describe along with their intended use in supervised learning:</p>
+                <ul>
+                    <li><strong>Car Dataset:</strong> Contains features like Price_in_thousands, Engine_size, Horsepower, Fuel_efficiency, and a target variable sales. This dataset can be used to predict car sales based on its features.</li>
+                    <li><strong>Range Dataset:</strong> Lists minimum, median, and maximum ranges for different vehicle types (Gasoline, Hybrid, All-Electric). This could be utilized in regression models or to enrich car datasets with range information.</li>
+                    <li><strong>State-Year Totals Electric Dataset:</strong> Shows the total number of electric vehicles by state and year. It can be used for time-series analysis or to understand the distribution of electric vehicles across different states over time.</li>
+                </ul>
+                <p>For supervised learning, let's focus on the Car Dataset for demonstration:</p>
+                <ul>
+                    <li>Original Dataset: First, we examine the dataset structure, which includes various car attributes and their sales figures.</li>
+                    <li>Training and Testing Sets: We split the data into training (80%) and testing (20%) sets. This split is done randomly to ensure that both sets are representative of the overall dataset. Features (e.g., Price_in_thousands, Engine_size, Horsepower, Fuel_efficiency) are used to predict the target variable (sales).</li>
+                </ul>
+                <h3>Creating Images</h3>
+                <p>Labeled Data Visualization: The first image demonstrates a sample of labeled data from a car dataset, essential for supervised learning. Each row in the dataset represents a different car with attributes like price, engine size, horsepower, fuel efficiency, and the target variable—sales.</p>
+                <img src="path_to_labeled_data_image" alt="Labeled Data">
+                <p>Training and Testing Sets Split: The second image illustrates how a dataset is split into training and testing sets. It highlights the importance of these sets being disjoint to prevent overfitting and to ensure the model is accurately evaluated on unseen data. The larger portion of the dataset is used for training, while a smaller portion is reserved for testing.</p>
+                <img src="NBtestandtrainRatio.png " alt="Training and Testing Sets Split"> 
+            </section>
+            <section id="code">
+                <h2>Code</h2>
+                <p>Link to code</p>
+                <a href="https://github.com/aryamansingh01/machine-learning-code-">Naive Bayes Code</a>
+            </section>
+            <section id="results">
+                <h2>Results</h2>
+    <h3>Confusion Matrix</h3>
+    <p>The confusion matrix is a powerful tool for understanding the performance of classification models. It displays the number of correct and incorrect predictions made by the model compared to the actual classifications. For the Gaussian Naive Bayes model applied to the car dataset, the confusion matrix was:</p>
+    <ul>
+        <li>True Positives (TP): 31</li>
+        <li>True Negatives (TN): Not explicitly mentioned, but can be inferred to be high given the context.</li>
+        <li>False Positives (FP): 0</li>
+        <li>False Negatives (FN): 0</li>
+    </ul>
+    <p>This results in a model that appears to perfectly classify the range category of cars as either 'High' or 'Low' based on features such as price, engine size, horsepower, and fuel efficiency.</p>
+    <h3>Model Accuracy and Other Metrics</h3>
+    <p>The model achieved an accuracy of 1.0 (or 100%), indicating that every prediction made by the model was correct. Other reported metrics include precision, recall (sensitivity), and the F1 score, all of which also achieved perfect scores of 1.0 for this particular classification task. This suggests an exceptionally well-performing model under the conditions tested.</p>
+    <p>It's important to note that while these results seem ideal, in practice, achieving 100% accuracy across all metrics is exceedingly rare and could indicate overfitting, especially if the model performs significantly worse on unseen data.</p>
+    <h3>Visualizations</h3>
+    <p>Visual aids like the confusion matrix visualization and the model performance metrics chart help in interpreting these results more intuitively. These visualizations can highlight the model's strengths and weaknesses in a clear and understandable way, aiding in the communication of results to stakeholders.</p>
+    <h3>Distribution of Power to Weight Ratio by Range Category</h3>
+    <p>This graph shows the distribution of a derived feature, the Power to Weight Ratio, categorized by the Range Category ('High' vs. 'Low'). The Power to Weight Ratio is a feature engineered from the dataset, possibly representing the ratio between the car's horsepower and its engine size.</p>
+    <h3>Key Points from the Graph:</h3>
+    <ul>
+        <li>Comparison: It allows for the comparison of how the power to weight ratios are distributed between cars considered to have a 'High' range versus those with a 'Low' range.</li>
+        <li>Insights: By analyzing the distribution, one can identify patterns, such as whether higher power to weight ratios are more common in cars with a 'High' or 'Low' range, which might suggest efficiency or performance trends among different types of vehicles.</li>
+    </ul>
+    <h3>Relationship Between Price and Estimated Range</h3>
+    <p>This graph depicts the relationship between the car's price (in thousands) and its estimated range, categorized by the Range Category. The estimated range could be a calculated or inferred value based on the car's fuel efficiency and possibly other factors.</p>
+    <h3>Key Points from the Graph:</h3>
+    <ul>
+        <li>Correlation: The graph explores whether there is a correlation between a car's price and its estimated range, providing insights into market trends.</li>
+        <li>Categorization: By viewing this relationship through the lens of the Range Category ('High' vs. 'Low'), stakeholders can better understand how range and price interact within distinct segments of the market.</li>
+    </ul>
+    <img src="NBconfusionmatrix.png" alt="Confusion matrix"> 
+    <img src="NBmodelperformnce.png" alt="model performnce "> 
+
+    <img src="NBpowertoweightreatio.png" alt="power to weight ratio"> 
+            </section>
+            <section id="conclusions">
+                <h2>Conclusions</h2>
+    <p>The analysis conducted with the Gaussian Naive Bayes model on the car dataset has yielded insightful conclusions about the relationship between various car attributes and their classification into range categories. The model's evaluation, through metrics like accuracy, precision, recall, and the F1 score, alongside visual aids such as the confusion matrix and performance charts, has allowed for a comprehensive understanding of its predictive capability. Here are the key conclusions drawn from the analysis:</p>
+    <h3>High Predictive Accuracy</h3>
+    <p>The Gaussian Naive Bayes model achieved a remarkable accuracy of 100% in classifying cars into 'High' and 'Low' range categories based on their features. This level of performance indicates that the model was exceptionally effective at learning from the training data and making correct predictions on the test data.</p>
+    <h3>Importance of Engineered Features</h3>
+    <p>The introduction of engineered features, such as the Power to Weight Ratio and Price Brackets, played a significant role in enhancing the model's predictive accuracy. These features likely captured underlying patterns in the data that were not evident from the original features alone.</p>
+    <h3>Effective Feature Selection</h3>
+    <p>The success of the Naive Bayes model underscores the importance of thoughtful feature selection and preparation. By carefully choosing which attributes to include and how to process them, the model was able to make highly accurate predictions.</p>
+    <h3>Model Generalizability and Limitations</h3>
+    <p>While the model demonstrated perfect performance metrics, it's crucial to approach these results with caution. Further validation is necessary to confirm the model's generalizability and robustness.</p>
+    <h3>Implications for Real-world Applications</h3>
+    <p>The analysis illustrates the potential of machine learning models, like Gaussian Naive Bayes, to offer valuable predictions and insights in the automotive industry. However, the real-world applicability of these models hinges on their ability to generalize beyond the initial dataset.</p>
+    <h3>Future Directions</h3>
+    <p>Future analyses could explore more complex models or incorporate additional features to capture more nuances in the data. It would also be beneficial to apply the model to datasets from different contexts or time periods to assess its adaptability.</p>
+    <p>In conclusion, the Naive Bayes model has provided a powerful tool for understanding the relationships within the car dataset, demonstrating the efficacy of machine learning in extracting meaningful patterns and predictions from complex data.</p>
+            </section>
+        </div>
+<footer>
+    <p>© Aryaman singh</p>
+</footer>
+
+            <script src="style.js"></script>
+    </body>
+</html>
